@@ -1,0 +1,21 @@
+server:
+  port: 9094
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    discovery:
+      locator:
+        enable: true
+    gateway:
+      routes:
+        - id: ARTICLE
+          uri: http://localhost:9091
+          predicates:
+            - Path=/article/**
+        - id: SOURCE
+          uri: http://localhost:9092
+          predicates:
+            - Path=/source/**
+
